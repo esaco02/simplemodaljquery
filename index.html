@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal-crp {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10000; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-crp {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close-crp {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-crp:hover,
+.close-crp:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>Modal Example</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal-crp">
+
+  <!-- Modal content -->
+  <div class="modal-content-crp">
+    <span class="close-crp">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+/*
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close-crp")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+*/
+
+
+jQuery.fn.modalcrp = function (action) {
+
+    if (jQuery(this).prop('nodeName') === 'DIV') {
+        var divid = jQuery(this).attr("id");
+		var modal = document.getElementById(divid);
+		if(action == "show"){
+			modal.style.display = "block";
+			jQuery(".close-crp").on("click",function(){
+				modal.style.display = "none";
+			});
+			
+			window.onclick = function(event) {
+			  if (event.target == this) {
+				modal.style.display = "none";
+			  }
+			}								
+		}
+		if(action=="close"){
+			modal.style.display = "none";
+		}
+
+    } else {
+        console.warn(jQuery(this).prop('nodeName') + " is not a div");
+    }
+};
+
+
+
+</script>
+
+</body>
+</html>
